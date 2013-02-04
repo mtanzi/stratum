@@ -5,19 +5,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Pixel Grid Examples</title>
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/stratum/css/main.css">
         
-            <link rel="stylesheet" href="/css/pixel-grid.css">
+            <link rel="stylesheet" href="/stratum/css/pixel-grid.css">
         
-        <script src="/vendor/livereload-js/dist/livereload.js?host=localhost"></script>
+        <!-- // <script src="/stratum/vendor/livereload-js/dist/livereload.js?host=localhost"></script> -->
     </head>
     <body>
         
             <header id="masthead">
     <ul class="nav">
-        <li  class="active"><a href="/grid/pixel.html">Pixel Grid</a></li>
-        <li ><a href="/grid/fluid.html">Fluid Grid</a></li>
-        <li ><a href="/grid/bbc.html">BBC Homepage Example</a></li>
+        <li  class="active"><a href="/stratum/grid/pixel.html">Pixel Grid</a></li>
+        <li ><a href="/stratum/grid/fluid.html">Fluid Grid</a></li>
+        <li ><a href="/stratum/grid/bbc.html">BBC Homepage Example</a></li>
+        <li ><a href="/stratum/grid/arstechnica.html">Arstechnica Layout Example</a></li>
     </ul>
 </header>
 
@@ -28,60 +29,69 @@
         <h2>Normal</h2>
 <div class="l-row">
     <div class="l-col m-3">
-        <span>3 columns</span>
+        <span>.l-col.m-3</span>
     </div>
     <div class="l-col m-3">
-        <span>3 columns</span>
+        <span>.l-col.m-3</span>
     </div>
     <div class="l-col m-3">
-        <span>3 columns</span>
+        <span>.l-col.m-3</span>
     </div>
     <div class="l-col m-3">
-        <span>3 columns</span>
+        <span>.l-col.m-3</span>
     </div>
 </div>
 
 <h2>Offsets</h2>
 <div class="l-row">
     <div class="l-col m-4 m-to-left-1 m-from-right-1">
-        <span>1 left-right</span>
+        <span>.l-col.m-to-left-1.m-from-right-1</span>
     </div>
     <div class="l-col m-4">
-        <span>4 columns</span>
+        <span>.l-col.m-4</span>
     </div>
     <div class="l-col m-4 m-to-right-1 m-from-left-1">
-        <span>1 left-right</span>
+        <span>.l-col.m-to-right-1.m-from-left-1</span>
     </div>
 </div>
 
-<h2>.m-gutterless</h2>
+<header>
+    <h2>No column gutters</h2>
+    <code>.l-row.m-gutterless</code>
+</header>
 <div class="l-row m-gutterless">
     <div class="l-col m-6">
-        <span>6 columns</span>
+        <span>.l-col.m-6</span>
     </div>
     <div class="l-col m-3">
-        <span>3 columns</span>
+        <span>.l-col.m-3</span>
     </div>
     <div class="l-col m-3">
-        <span>3 columns</span>
+        <span>.l-col.m-3</span>
     </div>
 </div>
 
-<h2>No row (Same as .m-gutterless)</h2>
+<header>
+    <h2>No row</h2>
+    identical to <code>.l-row.m-gutterless</code>
+</header>
 <div class="l-col m-6">
-    <span>6 columns</span>
+    <span>.l-col.m-6</span>
 </div>
 <div class="l-col m-3">
-    <span>3 columns</span>
+    <span>.l-col.m-3</span>
 </div>
 <div class="l-col m-3">
-    <span>3 columns</span>
+    <span>.l-col.m-3</span>
 </div>
 
     </div>
 
     <div class="l-container m-fluid">
-        <h2>.m-gutterless.m-fluid</h2>
+        <header>
+            <h2>No row (gutterless), forced-fluid</h2>
+            <code>.m-fluid</code>
+        </header>
         <div class="l-col m-6">
             <span>6 columns</span>
         </div>

@@ -1,4 +1,5 @@
-server: true
-auto:   true
-exclude: Gemfile, Gemfile.lock, Guardfile, node_modules, test, scss
-include: css
+server:     true
+auto:       true
+baseurl:    /stratum
+exclude:    Gemfile, Gemfile.lock, Guardfile, node_modules, test, scss
+include:    css

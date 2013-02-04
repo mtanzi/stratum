@@ -12,15 +12,45 @@ menu:   grids
     </div>
 
     <div class="l-container m-pixel">
-        <h2>.m-gutterless.m-pixel</h2>
+        <header>
+            <h2>Forced pixel grid</h2>
+            <code>.l-container.m-pixel</code> with no row
+        </header>
+
         <div class="l-col m-6">
-            <span>6 columns</span>
+            <span>.l-col-m-6</span>
         </div>
         <div class="l-col m-3">
-            <span>3 columns</span>
+            <span>.l-col-m-6</span>
         </div>
         <div class="l-col m-3">
-            <span>3 columns</span>
+            <span>.l-col-m-6</span>
+        </div>
+
+        <div class="l-row m-gutterless">
+            <div class="l-col m-9">
+                <div class="l-container">
+                    <span>.l-col-m-9</span>
+                    <h2>Nested grid 6 columns in a 9 column cell</h2>
+                    <div class="l-row">
+                        <div class="l-col m-2-of-8">
+                            <span>.l-col-m-2-of-6</span>
+                        </div>
+                        <div class="l-col m-2-of-8">
+                            <span>.l-col-m-2-of-6</span>
+                        </div>
+                        <div class="l-col m-2-of-8">
+                            <span>.l-col-m-2-of-6</span>
+                        </div>
+                        <div class="l-col m-2-of-8">
+                            <span>.l-col-m-2-of-6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="l-col m-3">
+                <span>.l-col-m-3</span>
+            </div>
         </div>
     </div>
 </div>

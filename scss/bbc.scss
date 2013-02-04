@@ -41,23 +41,29 @@ body {
 // Layout
 
 #page {
+  padding: 0;
+
   .top-banner {
     @include block($height: 96px);
   }
 
   .nav {
     @include block(blue, $height: 39px);
+
+    .l-container .l-col {
+      @include block(navy, $height: 39px);
+    }
   }
 
   .hero {
-    > header,
-    > dashboard,
+    > .head,
+    > .dashboard,
     > nav {
       margin-top: 10px;
       margin-bottom: 10px;
     }
 
-    > header .l-col {
+    > .head .l-col {
       @include block(green, $height: 75px);
     }
 
