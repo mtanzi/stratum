@@ -2,7 +2,6 @@
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  max-width: 100%;
   width: 1020px;
   margin-left: auto;
   margin-right: auto; }
@@ -816,7 +815,6 @@ body {
       -moz-box-sizing: content-box;
       -webkit-box-sizing: content-box;
       box-sizing: content-box;
-      max-width: 100%;
       width: 640px;
       margin-left: auto;
       margin-right: auto; }
@@ -1045,15 +1043,17 @@ body {
           right: 0; }
     #page > .content .sidebar {
       width: 300px; }
-    #page > .content .related .l-col.p-title {
+    #page > .content .related .l-col {
+      padding: 0 10px;
+      margin: 10px 0; }
+    #page > .content .related .item {
       -webkit-transition: 400ms;
       background-color: rgba(128, 0, 128, 0.4);
       position: relative;
-      min-height: 33px;
+      min-height: 255px;
       -webkit-transition: box-shadow 800ms ease, background 500ms ease;
-      -webkit-transition-delay: 600ms 0;
-      margin: 95px 0 0; }
-      #page > .content .related .l-col.p-title span {
+      -webkit-transition-delay: 600ms 0; }
+      #page > .content .related .item span {
         position: absolute;
         left: 0;
         right: 0;
@@ -1072,7 +1072,7 @@ body {
         -webkit-transition: 300ms;
         -webkit-border-radius: 20px;
         text-transform: uppercase; }
-      #page > .content .related .l-col.p-title::before {
+      #page > .content .related .item::before {
         position: absolute;
         top: 0;
         left: 0;
@@ -1081,7 +1081,7 @@ body {
         content: "";
         background: rgba(255, 255, 255, 0.25);
         margin: 0; }
-      #page > .content .related .l-col.p-title.l-col::after {
+      #page > .content .related .item.l-col::after {
         opacity: 0;
         -webkit-transition: 300ms ease;
         -webkit-transition-delay: 300ms;
@@ -1091,70 +1091,19 @@ body {
         right: 50%;
         border-top: 1px solid #3e0f3e;
         content: ""; }
-      #page > .content .related .l-col.p-title:hover {
+      #page > .content .related .item:hover {
         background-color: rgba(128, 0, 128, 0.7);
         box-shadow: inset 0 0 0px 1px #3e0f3e, 0 1px 5px rgba(0, 0, 0, 0.3); }
-        #page > .content .related .l-col.p-title:hover span {
+        #page > .content .related .item:hover span {
           opacity: 1; }
-        #page > .content .related .l-col.p-title:hover::after {
+        #page > .content .related .item:hover::after {
           opacity: 1;
           left: 0;
           right: 0; }
-    #page > .content .related .l-col {
-      -webkit-transition: 400ms;
-      background-color: rgba(0, 128, 0, 0.4);
-      position: relative;
-      min-height: 255px;
-      -webkit-transition: box-shadow 800ms ease, background 500ms ease;
-      -webkit-transition-delay: 600ms 0;
-      margin: 0 0 10px; }
-      #page > .content .related .l-col span {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 50%;
-        color: rgba(255, 255, 255, 0.8);
-        height: 30px;
-        text-align: center;
-        line-height: 30px;
-        margin: -15px auto 0;
-        max-width: 210px;
-        background: #0f3e0f;
-        z-index: 2;
-        opacity: 0;
-        cursor: default;
-        font-size: 10px;
-        -webkit-transition: 300ms;
-        -webkit-border-radius: 20px;
-        text-transform: uppercase; }
-      #page > .content .related .l-col::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        content: "";
-        background: rgba(255, 255, 255, 0.25);
-        margin: 0; }
-      #page > .content .related .l-col.l-col::after {
-        opacity: 0;
-        -webkit-transition: 300ms ease;
-        -webkit-transition-delay: 300ms;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        right: 50%;
-        border-top: 1px solid #0f3e0f;
-        content: ""; }
-      #page > .content .related .l-col:hover {
-        background-color: rgba(0, 128, 0, 0.7);
-        box-shadow: inset 0 0 0px 1px #0f3e0f, 0 1px 5px rgba(0, 0, 0, 0.3); }
-        #page > .content .related .l-col:hover span {
-          opacity: 1; }
-        #page > .content .related .l-col:hover::after {
-          opacity: 1;
-          left: 0;
-          right: 0; }
+    #page > .content .related .l-col.p-title {
+      margin: 95px 0 0; }
+      #page > .content .related .l-col.p-title .item {
+        min-height: 30px; }
   #page .mastfoot {
     background: rgba(34, 34, 34, 0.2); }
     #page .mastfoot .l-col {
