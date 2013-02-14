@@ -64,8 +64,7 @@ $grid-column:         grid-column-width();
   width: grid-columns-width($span, $grid-column, $gutter, $type, $total-columns);
 }
 
-// Calculate offset width based on number of columns it spans (including gutters)
-@mixin grid-offset-by-column($span: 1, $direction: left, $flow: positive, $grid-type: $grid-type) {
+@mixin grid-column-offset($direction, $span: 1, $grid-type: $grid-type, $invert: false) {
   $v-offset: grid-columns-width($span, $type: $grid-type);
   $v-gutter: $grid-gutter;
 
@@ -75,9 +74,9 @@ $grid-column:         grid-column-width();
   }
 
   // Negative offset
-  @if $flow == negative {
-    margin-#{$direction}: -$v-offset - ($v-gutter / 2);
+  @if $invert {
+    #{$direction}: $v-offset + ($v-gutter * 1.5);
   } @else {
-    margin-#{$direction}: $v-offset + ($v-gutter * 1.5);
+    #{$direction}: -$v-offset - $v-gutter;
   }
 }
