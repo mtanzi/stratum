@@ -1,13 +1,28 @@
 // Grid settings
-$grid-guides-color:         #8aa8c0   !default;
-$grid-guides-opacity:       .2        !default;
-$grid-guides-position:      front     !default;
 $grid-type:                 fluid     !default;
 $grid-size:                 980px     !default;
 $grid-total-columns:        12        !default;
 $grid-desired-gutter:       20px      !default;
 $grid-baseline:             18px      !default;
 
+// Advanced settings
+// This settings control advanced grid features
+// but also increase compiled file size
+$grid-nested-grids:         true      !default;
+$grid-offsets:              true      !default;
+$grid-subdivisions:         true      !default;
+$grid-overrides:            true      !default;
+
+// Grid guides
+$grid-guides-class:         false     !default;   // Adds `.m-show-guides` and `.m-show-guides.m-front` to scaffolding
+$grid-guides-color:         #8aa8c0   !default;
+$grid-guides-opacity:       .2        !default;
+$grid-guides-position:      front     !default;
+
+// Scaffolding
+$scaffolding-debug:         true      !default;  // Highlight disabled features that are used
+
+// Helper mixins
 @import "helpers/vendor-prefix";
 @import "helpers/group";
 @import "helpers/icons";

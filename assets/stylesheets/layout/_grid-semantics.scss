@@ -46,50 +46,62 @@
 %l-container {
   @include grid-container;
 
-  // Defines inner grid container (nested grid)
-  %l-container {
-    width: auto;
-  }
-
-  // Defines grid row
+  // Grid row
   %l-row {
     @include grid-row;
   }
 
+  // Grid column
+  %l-col {
+    @include grid-column;
+  }
+}
+
+// - Optional
+// Override default grid type
+@if $grid-overrides {
   // Defines grid row of forced fluid grid
-  &%l-grid-fluid > %l-row, {
+  %l-grid-fluid > %l-row, {
     @include grid-row(fluid);
   }
   // Defines grid row of forced pixel grid
-  &%l-grid-pixel > %l-row {
+  %l-grid-pixel > %l-row {
     @include grid-row(pixel);
   }
+}
 
-  // Always set nested grids to fluid
-  &%l-container %l-container > %l-row, {
-    @include grid-row(fluid);
-  }
+// - Optional
+// Nested grids
+@if $grid-nested-grids {
+  %l-container {
+    // Defines inner grid container (nested grid)
+    %l-container {
+      width: auto;
+    }
 
-  // Defines row of gutterless grid
-  %l-gutterless {
-    &, %l-row {
-      margin: {
-        left: 0;
-        right: 0;
-      }
+    // Always set nested grids to fluid
+    &%l-container %l-container > %l-row, {
+      @include grid-row(fluid);
     }
   }
 }
 
 
-// Defines columns
-%l-col {
-  @include grid-column;
-
-  %l-gutterless & {
-    margin-left: 0;
-    margin-right: 0;
+// Gutterless row
+%l-container {
+  %l-gutterless,
+  %l-gutterless %l-row {
+    margin: {
+      left: 0;
+      right: 0;
+    }
   }
+}
+
+// Gutterless grid column
+%l-gutterless %l-col {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 
@@ -102,83 +114,67 @@
   }
 }
 
+// Placeholder for gutterless columns
+%-col-gutterless {
+  @include grid-column-margins(0);
+}
 
 // Column spans
 @for $i from 1 through $grid-total-columns {
   %l-col-#{$i} {
     @include grid-column-width($i, $grid-type);
 
-    // Force pixel grid
-    %l-grid-pixel > &,
-    %l-grid-pixel > %l-row > & {
-      @include grid-column-width($i, pixel);
-      @include grid-column-margins(pixel);
-    }
-    // Force fluid grid
-    %l-grid-fluid & {
-      @include grid-column-width($i, fluid);
-      @include grid-column-margins(fluid);
-    }
-
     // Force gutterless grid
     %l-gutterless &,
     // Apply gutterless grid on columns without rows
     %l-container > & {
+      @extend %-col-gutterless;
       @include grid-column-width($i, $grid-type, $gutter: 0);
-      @include grid-column-margins(0);
     }
 
-    %l-grid-pixel > &,
-    %l-grid-pixel %l-gutterless & {
-      @include grid-column-width($i, pixel, $gutter: 0);
-      @include grid-column-margins(0);
-    }
-    %l-grid-fluid > &,
-    %l-grid-fluid %l-gutterless & {
-      @include grid-column-width($i, fluid, $gutter: 0);
-      @include grid-column-margins(0);
-    }
+    @if $grid-overrides {
+      // Force pixel grid
+      %l-grid-pixel > &,
+      %l-grid-pixel > %l-row > & {
+        @include grid-column-width($i, pixel);
+        @include grid-column-margins(pixel);
+      }
+      %l-grid-pixel > &,
+      %l-grid-pixel %l-gutterless & {
+        @include grid-column-width($i, pixel, $gutter: 0);
+        @include grid-column-margins(0);
+      }
 
-    // TODO (fix inconsistent gutters betweeen pixel and fluid grids)
-    // Nested rows (for fluid grids)
-    // Since percentage value takes into account its parent container
-    // we need to adjust total column count to get the correct calculations
-    %l-grid-fluid & {
-      @for $n from 1 through $grid-total-columns {
-        %l-row %l-col-#{$n} {
-          @include grid-column-width($n, fluid, $total-columns: $i);
-        }
+      // Force fluid grid
+      %l-grid-fluid & {
+        @include grid-column-width($i, fluid);
+        @include grid-column-margins(fluid);
+      }
+      %l-grid-fluid > &,
+      %l-grid-fluid %l-gutterless & {
+        @include grid-column-width($i, fluid, $gutter: 0);
+        @include grid-column-margins(0);
       }
     }
-    @if $grid-type == fluid {
-      @for $n from 1 through $grid-total-columns {
-        %l-row %l-col-#{$n} {
-          @include grid-column-width($n, fluid, $total-columns: $i);
-        }
-      }
-    }
-  }
-}
 
-// Column spans for custom grids
-@for $i from 1 through $grid-total-columns {
-  @for $n from 1 through $grid-total-columns {
-    %l-col-#{$i}-of-#{$n} {
-      @include grid-column-width($i, fluid, $gutter: 0, $total-columns: $n);
-    }
-  }
-}
-
-
-// Centre column
-%l-col-center {
-  %l-container &,
-  %l-grid-pixel &,
-  %l-grid-fluid &,
-  %l-gutterless & {
-    float: none;
-    margin-left: auto;
-    margin-right: auto;
+  //   // TODO (fix inconsistent gutters betweeen pixel and fluid grids)
+  //   // Nested rows (for fluid grids)
+  //   // Since percentage value takes into account its parent container
+  //   // we need to adjust total column count to get the correct calculations
+  //   %l-grid-fluid & {
+  //     @for $n from 1 through $grid-total-columns {
+  //       %l-row %l-col-#{$n} {
+  //         @include grid-column-width($n, fluid, $total-columns: $i);
+  //       }
+  //     }
+  //   }
+  //   @if $grid-type == fluid {
+  //     @for $n from 1 through $grid-total-columns {
+  //       %l-row %l-col-#{$n} {
+  //         @include grid-column-width($n, fluid, $total-columns: $i);
+  //       }
+  //     }
+  //   }
   }
 }
 
@@ -190,76 +186,107 @@
 }
 
 
-// Column offsets
-%l-container {
+// Centre column
+%l-col-center {
+  %l-container  &,
+  %l-grid-pixel &,
+  %l-grid-fluid &,
+  %l-gutterless & {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+// - Optional
+// Column subdivisions
+@if $grid-subdivisions {
   @for $i from 1 through $grid-total-columns {
-    // ## Grid with margins
-    // Default grid offsets
-    & > %l-row %l-col {
-      // From left
-      &%l-col-from-left-#{$i} {
-        @include grid-offset-by-column($i, left, positive, $grid-type);
-      }
-
-      // To left
-      &%l-col-to-left-#{$i} {
-        @include grid-offset-by-column($i, left, negative, $grid-type);
-      }
-
-      // From right
-      &%l-col-from-right-#{$i} {
-        @include grid-offset-by-column($i, right, positive, $grid-type);
-      }
-
-      // To right
-      &%l-col-to-right-#{$i} {
-        @include grid-offset-by-column($i, right, negative, $grid-type);
+    @for $n from 1 through $grid-total-columns {
+      %l-col-#{$i}-of-#{$n} {
+        @include grid-column-width($i, fluid, $gutter: 0, $total-columns: $n);
       }
     }
+  }
+}
 
-    // Pixel grid offsets
-    &%l-grid-pixel > %l-row %l-col {
-      // From left
-      &%l-col-from-left-#{$i} {
-        @include grid-offset-by-column($i, left, positive, pixel);
+
+// - Optional
+// Column offsets
+@if $grid-offsets {
+  %l-container {
+    @for $i from 1 through $grid-total-columns {
+      // Default column offsets
+      & > %l-row %l-col {
+        // From left
+        &%l-col-from-left-#{$i} {
+          @include grid-offset-by-column($i, left, positive, $grid-type);
+        }
+
+        // To left
+        &%l-col-to-left-#{$i} {
+          @include grid-offset-by-column($i, left, negative, $grid-type);
+        }
+
+        // From right
+        &%l-col-from-right-#{$i} {
+          @include grid-offset-by-column($i, right, positive, $grid-type);
+        }
+
+        // To right
+        &%l-col-to-right-#{$i} {
+          @include grid-offset-by-column($i, right, negative, $grid-type);
+        }
       }
 
-      // To left
-      &%l-col-to-left-#{$i} {
-        @include grid-offset-by-column($i, left, negative, pixel);
-      }
+      // Grid override column offsets
+      @if $grid-overrides {
+        // Pixel grid offsets
+        &%l-grid-pixel > %l-row %l-col {
+          // From left
+          &%l-col-from-left-#{$i} {
+            @include grid-offset-by-column($i, left, positive, pixel);
+          }
 
-      // From right
-      &%l-col-from-right-#{$i} {
-        @include grid-offset-by-column($i, right, positive, pixel);
-      }
+          // To left
+          &%l-col-to-left-#{$i} {
+            @include grid-offset-by-column($i, left, negative, pixel);
+          }
 
-      // To right
-      &%l-col-to-right-#{$i} {
-        @include grid-offset-by-column($i, right, negative, pixel);
-      }
-    }
+          // From right
+          &%l-col-from-right-#{$i} {
+            @include grid-offset-by-column($i, right, positive, pixel);
+          }
 
-    // Fluid grid offsets
-    &%l-grid-fluid > %l-row %l-col {
-      // From left
-      &%l-col-from-left-#{$i} {
-        @include grid-offset-by-column($i, left, positive, fluid);
-      }
+          // To right
+          &%l-col-to-right-#{$i} {
+            @include grid-offset-by-column($i, right, negative, pixel);
+          }
+        }
 
-      // To left
-      &%l-col-to-left-#{$i} {
-        @include grid-offset-by-column($i, left, negative, fluid);
-      }
+        // Fluid grid offsets
+        &%l-grid-fluid > %l-row %l-col {
+          // From left
+          &%l-col-from-left-#{$i} {
+            @include grid-offset-by-column($i, left, positive, fluid);
+          }
 
-      // From right
-      &%l-col-from-right-#{$i} {
-        @include grid-offset-by-column($i, right, positive, fluid);
-      }
+          // To left
+          &%l-col-to-left-#{$i} {
+            @include grid-offset-by-column($i, left, negative, fluid);
+          }
 
-      // To right
-      &%l-col-to-right-#{$i} {
-        @include grid-offset-by-column($i, right, negative, fluid);
+          // From right
+          &%l-col-from-right-#{$i} {
+            @include grid-offset-by-column($i, right, positive, fluid);
+          }
+
+          // To right
+          &%l-col-to-right-#{$i} {
+            @include grid-offset-by-column($i, right, negative, fluid);
+          }
+        }
       }
     }
   }
