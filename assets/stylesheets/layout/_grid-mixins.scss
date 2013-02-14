@@ -6,14 +6,18 @@ $grid-gutter:         grid-column-gutter();
 $grid-half-gutter:    $grid-gutter / 2;
 $grid-column:         grid-column-width();
 
+// Clearfix
+%-clearfix {
+  @include group;
+}
 
 // Mixins
 // ------
 
 // Grid container to set grid bounds
 @mixin grid-container($width: $grid-size) {
+  @extend %-clearfix;
   @include box-sizing(content-box);
-  @include group;
   width: $width;
   margin: {
     left: auto;
@@ -24,7 +28,7 @@ $grid-column:         grid-column-width();
 // Grid row
 // $type: <pixel|fluid>
 @mixin grid-row($type: $grid-type) {
-  @include group;
+  @extend %-clearfix;
   @include grid-column-margins($type, -1);
   clear: both;
 }
