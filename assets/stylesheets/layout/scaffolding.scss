@@ -61,27 +61,16 @@
       @extend %l-col-#{$i};
     }
 
-    // - Optional
-    // Column offsets
     @if $grid-offsets {
-      &.m-from-left-#{$i} {
-        @extend %l-col-from-left-#{$i};
+      &.m-push-#{$i} {
+        @extend %l-col-push-#{$i};
       }
-      &.m-to-left-#{$i} {
-        @extend %l-col-to-left-#{$i};
-      }
-
-      &.m-from-right-#{$i} {
-        @extend %l-col-from-right-#{$i};
-      }
-      &.m-to-right-#{$i} {
-        @extend %l-col-to-right-#{$i};
+      &.m-pull-#{$i} {
+        @extend %l-col-pull-#{$i};
       }
     } @else if $scaffolding-debug {
-      &.m-from-left-#{$i},
-      &.m-to-left-#{$i},
-      &.m-from-right-#{$i},
-      &.m-to-right-#{$i} {
+      &.m-push-#{$i},
+      &.m-pull-#{$i} {
         @include feature-warning("`$grid-offsets` is not enabled");
       }
     }

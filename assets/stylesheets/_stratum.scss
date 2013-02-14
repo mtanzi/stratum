@@ -8,8 +8,8 @@ $grid-baseline:             18px      !default;
 // Advanced settings
 // This settings control advanced grid features
 // but also increase compiled file size
-$grid-nested-grids:         true      !default;
-$grid-offsets:              true      !default;
+$grid-nested-grids:         false     !default;   // Dramatically increases compiled CSS size lacks full support for fluid guttered grids
+$grid-offsets:              false     !default;
 $grid-subdivisions:         true      !default;
 $grid-overrides:            true      !default;
 
