@@ -14,9 +14,11 @@ h1, h2 {
 
 .l-container {
   margin-top: $grid-baseline * 2;
+  margin-bottom: $grid-baseline * 2;
 
   .trace & {
     margin-top: 0;
+    margin-bottom: 0;
   }
 
   > article {

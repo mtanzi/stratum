@@ -12,7 +12,7 @@ $grid-baseline:             19px;
 @import "layout/scaffolding";
 @import "mock-block";
 
-@include GRID-GUIDES;
+// @include GRID-GUIDES;
 
 body {
   font: 12px/1.36 Helvetica, Arial, sans-serif;
@@ -47,7 +47,7 @@ body {
   }
 
   .nav {
-    @include block(blue, $height: 39px);
+    @include block(#9183b6, $height: 39px);
 
     .l-container .l-col {
       @include block(navy, $height: 39px);
