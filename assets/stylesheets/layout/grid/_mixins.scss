@@ -1,4 +1,4 @@
-@import "grid-functions";
+@import "functions";
 
 // Grid initialisation
 // -------------------
@@ -26,15 +26,14 @@ $grid-column:         grid-column-width();
 }
 
 // Grid row
-// $type: <pixel|fluid>
+// $type: pixel | fluid
 @mixin grid-row($type: $grid-type) {
   @extend %-clearfix;
   @include grid-column-margins($type, -1);
   clear: both;
 }
 
-// Converts into grid column
-// $variation - can be normal, last, end, inner or centered
+// Make grid column
 @mixin grid-column($type: $grid-type) {
   @include box-sizing(border-box);
   min-height: 1px;

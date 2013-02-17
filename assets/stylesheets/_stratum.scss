@@ -5,14 +5,6 @@ $grid-total-columns:        12        !default;
 $grid-desired-gutter:       20px      !default;
 $grid-baseline:             18px      !default;
 
-// Advanced settings
-// This settings control advanced grid features
-// but also increase compiled file size
-$grid-nested-grids:         false     !default;   // Dramatically increases compiled CSS size lacks full support for fluid guttered grids
-$grid-offsets:              false     !default;
-$grid-subdivisions:         true      !default;
-$grid-overrides:            true      !default;
-
 // Grid guides
 $grid-guides-class:         false     !default;   // Adds `.m-show-guides` and `.m-show-guides.m-front` to scaffolding
 $grid-guides-color:         #8aa8c0   !default;
@@ -22,23 +14,9 @@ $grid-guides-position:      front     !default;
 // Scaffolding
 $scaffolding-debug:         true      !default;  // Highlight disabled features that are used
 
-// Helper mixins
-@import "helpers/vendor-prefix";
-@import "helpers/group";
-@import "helpers/icons";
-@import "helpers/position";
-@import "helpers/dimensions";
-
-// CSS3 mixins
-@import "css3/animation";
-@import "css3/border-radius";
-@import "css3/box-sizing";
-@import "css3/transform";
-@import "css3/transition";
-
-// Layout
+@import "css3";
+@import "helpers";
 @import "layout/grid";
-// @import "layout/responsive";
 
 // Forms
 @import "forms/input-placeholder";

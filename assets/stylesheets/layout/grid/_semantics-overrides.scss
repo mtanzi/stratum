@@ -1,0 +1,40 @@
+// Grid overrides
+// --------------
+
+// %l-grid-pixel       –  Force pixel grid (applied to grid container)
+// %l-grid-fluid       –  Force fluid grid (applied to grid container)
+
+
+$grid-overrides: true;
+
+// Overrides
+%l-pixel %l-col {
+  @include grid-column-margins(pixel);
+}
+%l-fluid %l-col {
+  @include grid-column-margins(fluid);
+}
+
+
+// Column spans
+@for $i from 1 through $grid-total-columns {
+  %l-col-#{$i} {
+    // Force pixel grid
+    %l-grid-pixel > %l-row > & {
+      @include grid-column-width($i, pixel);
+    }
+    %l-grid-pixel > &,
+    %l-grid-pixel > %l-gutterless & {
+      @include grid-column-width($i, pixel, $gutter: 0);
+    }
+
+    // Force fluid grid
+    %l-grid-fluid & {
+      @include grid-column-width($i, fluid);
+    }
+    %l-grid-fluid > &,
+    %l-grid-fluid > %l-gutterless & {
+      @include grid-column-width($i, fluid, $gutter: 0);
+    }
+  }
+}

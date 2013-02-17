@@ -1,0 +1,37 @@
+// Nested grids
+// ------------
+
+
+$grid-nested-grids: true;
+
+%l-container {
+  // Always set nested grids to fluid
+  &%l-container %l-container > %l-row, {
+    @include grid-row(fluid);
+  }
+}
+
+
+// Column spans
+@for $i from 1 through $grid-total-columns {
+  %l-col-#{$i} {
+    // TODO (fix inconsistent gutters betweeen pixel and fluid grids)
+    // Nested rows (for fluid grids)
+    // Since percentage value takes into account its parent container
+    // we need to adjust total column count to get the correct calculations
+    %l-grid-fluid & {
+      @for $n from 1 through $grid-total-columns {
+        %l-row %l-col-#{$n} {
+          @include grid-column-width($n, fluid, $total-columns: $i);
+        }
+      }
+    }
+    @if $grid-type == fluid {
+      @for $n from 1 through $grid-total-columns {
+        %l-row %l-col-#{$n} {
+          @include grid-column-width($n, fluid, $total-columns: $i);
+        }
+      }
+    }
+  }
+}

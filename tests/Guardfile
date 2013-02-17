@@ -7,6 +7,8 @@ guard 'sass',
 # guard 'sass', :load_paths => ['../assets/stylesheets'], :output => 'css' do
 #   # :debug_info => true,
 #   watch(%r{scss/fluid-grid\.(scss)})
+#   watch(%r{scss/pixel-grid\.(scss)})
+#   watch(%r{scss/bbc\.(scss)})
 # end
 
 guard 'livereload' do
