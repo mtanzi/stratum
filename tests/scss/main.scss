@@ -8,6 +8,12 @@ body {
   padding: 0;
 }
 
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 h1, h2 {
   margin: ($grid-baseline * 2) 0 $grid-baseline;
 }
@@ -98,29 +104,40 @@ article {
   @include group;
   @include user-select(none);
   float: right;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  background: rgba(black, 0.4);
+  padding: 3px 3px 3px 0;
+  border-radius: 3px;
+
+  menu {
+    float: left;
+    margin-left: 3px;
+
+    li {
+      margin: 0 0 0 1px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
 
   li {
     float: left;
     padding: 3px 10px;
     font-size: 12px;
-    border: 1px solid #aaa;
     margin-left: 3px;
     background: white;
     cursor: pointer;
 
     &:hover {
       background: #eee;
+      color: #555;
     }
     &:active {
       background: #ccc;
-      border-color: #888;
     }
     &.active {
-      background: #555;
-      border-color: #333;
+      background: #444;
       color: white;
     }
   }

@@ -1,44 +1,54 @@
 $(function(){
 	$('article').each(function(i, item) {
-		testCases.forEach(function(testCase) {
-			createOptionsMenu($(item), testCase);
-		});
+		var casePool = $(item).data('case-pool');
+		_createOptionsMenu($(item), testCases[casePool]);
 	});
 });
 
-function createOptionsMenu(el, options) {
-	var menu = $('<menu class="options">');
-	var li = $('<li>');
+function _createOptionsMenu(el, options) {
+	var menuEl = $('<menu>');
+	var liEl = $('<li>');
+	var optionsMenu = menuEl.clone().addClass('options');
+	var groups = {};
 
-	function handleClick() {
+	function _handleClick() {
 		var option = $(this);
 
-		option.attr('class', option.data('originalClasses'));
 		option.data('instructions')
 			.forEach(function(instruction) {
 				var target = $(instruction.selector, el);
-				var lastUsed = target.data('lastUsed');
-
-				if(lastUsed) {
-					option.closest('menu').find('li').removeClass('active');
-				}
-
-				target
-					.removeClass(lastUsed)
-					.data('lastUsed', instruction.toggle)
-					.toggleClass(instruction.toggle);
+				target.toggleClass(instruction.modifier);
 			});
 
+		if(option.data('group')) {
+			optionsMenu.find('menu.' + option.data('group') + ' li').removeClass('active');
+		}
 		option.toggleClass('active');
 	}
 
 	for(var name in options) {
-		li.clone()
-			.text(name)
-			.data('instructions', options[name].instructions)
-			.appendTo(menu)
-			.on('click', handleClick);
+		var set = options[name];
+		var item = liEl.clone()
+				.text(name)
+				.data('instructions', set.instructions)
+				.on('click', _handleClick);
+
+
+		if(set.group && !groups[set.group]) {
+			groups[set.group] = menuEl.clone().addClass(set.group);
+		}
+
+		if(set.group) {
+			groups[set.group].append(item);
+			item.data('group', set.group);
+		} else {
+			optionsMenu.append(item);
+		}
 	}
 
-	el.find('header').append(menu);
+	for(var group in groups) {
+		optionsMenu.append(groups[group]);
+	}
+
+	el.find('header').append(optionsMenu);
 }

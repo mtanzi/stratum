@@ -6,45 +6,6 @@ css:    pixel-grid
 menu:   grids
 ---
 
-<script>
-    var testCases = [
-        {
-            "Gutterless": {
-                instructions: [
-                    {
-                        selector:   ".l-row",
-                        toggle:     "m-gutterless"
-                    }
-                ]
-            },
-            "Offsets": {
-                instructions: [
-                    {
-                        selector:   ".l-col:first-child",
-                        toggle:     "m-pull-1"
-                    },
-                    {
-                        selector:   ".l-col:last-child",
-                        toggle:     "m-push-1"
-                    }
-                ]
-            },
-            "Offsets (swap)": {
-                instructions: [
-                    {
-                        selector:   ".l-col:first-child",
-                        toggle:     "m-pull-3"
-                    },
-                    {
-                        selector:   ".l-col:last-child",
-                        toggle:     "m-push-3"
-                    }
-                ]
-            }
-        }
-    ];
-</script>
-
 <div id="page">
     <div class="l-container">
         {% include shared-grid-samples.html %}
