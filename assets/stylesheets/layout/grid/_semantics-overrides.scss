@@ -20,19 +20,21 @@ $grid-overrides: true;
 @for $i from 1 through $grid-total-columns {
   %l-col-#{$i} {
     // Force pixel grid
-    %l-grid-pixel > %l-row > & {
+    %l-grid-pixel %l-row & {
       @include grid-column-width($i, pixel);
     }
-    %l-grid-pixel > &,
+    // Force pixel grid no gutters
+    %l-grid-pixel &,
     %l-grid-pixel > %l-gutterless & {
       @include grid-column-width($i, pixel, $gutter: 0);
     }
 
     // Force fluid grid
-    %l-grid-fluid & {
+    %l-grid-fluid %l-row & {
       @include grid-column-width($i, fluid);
     }
-    %l-grid-fluid > &,
+    // Force fluid grid no gutters
+    %l-grid-fluid &,
     %l-grid-fluid > %l-gutterless & {
       @include grid-column-width($i, fluid, $gutter: 0);
     }

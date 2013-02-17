@@ -67,7 +67,7 @@
     }
 
     // Columns without gutters
-    %l-container  &,
+    %l-container &,
     %l-gutterless & {
       @include grid-column-width($i, $grid-type, $gutter: 0);
     }
