@@ -54,11 +54,11 @@
 // Defines column margins
 // Only applied to descendants of rows
 %l-row %l-col {
-  @include grid-column-margins;
+  @include grid-gutters;
 }
 
 
-// Column spans
+// Column sizes
 @for $i from 1 through $grid-total-columns {
   %l-col-#{$i} {
     // Columns with gutters
@@ -92,5 +92,5 @@
 // INTERNAL
 // Placeholder for gutterless columns
 %-drop-margins {
-  @include grid-column-margins(none);
+  @include grid-gutters(none);
 }

@@ -8,6 +8,7 @@
 $grid-offsets: true;
 
 
+// Column sizes
 @for $i from 1 through $grid-total-columns {
   %l-col-push-#{$i} {
     @extend %-col-positioned;
