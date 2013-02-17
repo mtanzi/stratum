@@ -25,7 +25,7 @@ $grid-overrides: true;
     }
     // Force pixel grid no gutters
     %l-grid-pixel &,
-    %l-grid-pixel > %l-gutterless & {
+    %l-grid-pixel %l-gutterless & {
       @include grid-column-width($i, pixel, $gutter: 0);
     }
 
@@ -35,7 +35,7 @@ $grid-overrides: true;
     }
     // Force fluid grid no gutters
     %l-grid-fluid &,
-    %l-grid-fluid > %l-gutterless & {
+    %l-grid-fluid %l-gutterless & {
       @include grid-column-width($i, fluid, $gutter: 0);
     }
   }

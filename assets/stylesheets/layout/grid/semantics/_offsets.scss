@@ -7,40 +7,38 @@
 
 $grid-offsets: true;
 
-%l-container {
-  @for $i from 1 through $grid-total-columns {
-    %l-col-pull-#{$i} {
-      @extend %-col-positioned;
-      @include grid-column-offset(left, $i);
-    }
 
-    %l-col-push-#{$i} {
-      @extend %-col-positioned;
+@for $i from 1 through $grid-total-columns {
+  %l-col-push-#{$i} {
+    @extend %-col-positioned;
+
+    %l-container & {
       @include grid-column-offset(right, $i);
     }
   }
 
-  &%l-grid-pixel > %l-row {
-    @for $i from 1 through $grid-total-columns {
-      %l-col-pull-#{$i} {
-        @include grid-column-offset(left, $i, pixel);
-      }
+  %l-col-pull-#{$i} {
+    @extend %-col-positioned;
 
-      %l-col-push-#{$i} {
-        @include grid-column-offset(right, $i, pixel);
-      }
+    %l-container & {
+      @include grid-column-offset(left, $i);
     }
   }
-  &%l-grid-fluid > %l-row {
-    @for $i from 1 through $grid-total-columns {
-      %l-col-pull-#{$i} {
-        @include grid-column-offset(left, $i, fluid);
-      }
 
-      %l-col-push-#{$i} {
-        @include grid-column-offset(right, $i, fluid);
-      }
-    }
+  %l-grid-pixel %l-row %l-col-pull-#{$i} {
+    @include grid-column-offset(left, $i, pixel);
+  }
+
+  %l-grid-pixel %l-row %l-col-push-#{$i} {
+    @include grid-column-offset(right, $i, pixel);
+  }
+
+  %l-grid-fluid %l-row %l-col-pull-#{$i} {
+    @include grid-column-offset(left, $i, fluid);
+  }
+
+  %l-grid-fluid %l-row %l-col-push-#{$i} {
+    @include grid-column-offset(right, $i, fluid);
   }
 }
 

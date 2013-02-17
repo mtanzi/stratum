@@ -6,10 +6,6 @@ $grid-gutter:         grid-column-gutter();
 $grid-half-gutter:    $grid-gutter / 2;
 $grid-column:         grid-column-width();
 
-// Clearfix
-%-clearfix {
-  @include group;
-}
 
 // Mixins
 // ------
@@ -25,6 +21,7 @@ $grid-column:         grid-column-width();
   }
 }
 
+
 // Grid row
 // $type: pixel | fluid
 @mixin grid-row($type: $grid-type) {
@@ -33,12 +30,14 @@ $grid-column:         grid-column-width();
   clear: both;
 }
 
+
 // Make grid column
 @mixin grid-column($type: $grid-type) {
   @include box-sizing(border-box);
   min-height: 1px;
   float: left;
 }
+
 
 // Column margins
 // $modifier: 1   - normal (column) margins
@@ -58,12 +57,15 @@ $grid-column:         grid-column-width();
   margin-right: $v-gutter;
 }
 
+
 // Calculate single column width (in pixels) multipled by number of columns it spans (indluding gutters)
 @mixin grid-column-width($span: 1, $type: $grid-type, $gutter: $grid-gutter, $total-columns: $grid-total-columns) {
   width: grid-columns-width($span, $grid-column, $gutter, $type, $total-columns);
 }
 
-@mixin grid-column-offset($direction, $span: 1, $grid-type: $grid-type, $invert: false) {
+
+// Offset column
+@mixin grid-column-offset($direction, $span: 1, $grid-type: $grid-type) {
   $v-offset: grid-columns-width($span, $type: $grid-type);
   $v-gutter: $grid-gutter;
 
@@ -72,10 +74,12 @@ $grid-column:         grid-column-width();
     $v-gutter: grid-percentage($v-gutter);
   }
 
-  // Negative offset
-  @if $invert {
-    #{$direction}: $v-offset + ($v-gutter * 1.5);
-  } @else {
-    #{$direction}: -$v-offset - $v-gutter;
-  }
+  #{$direction}: -($v-offset + $v-gutter);
+}
+
+
+// INTERNAL
+// Clearfix
+%-clearfix {
+  @include group;
 }
