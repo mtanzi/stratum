@@ -1,6 +1,7 @@
-%article
+%article(ng-controller="testCase")
   %header
     %h2 Normal
+    %options(items="options")
   .l-row
     .l-col.m-3
       %span .l-col.m-3
@@ -10,6 +11,7 @@
       %span .l-col.m-3
     .l-col.m-3
       %span .l-col.m-3
+
 %article
   %header
     %h2 Offsets
@@ -20,6 +22,7 @@
       %span .l-col.m-4
     .l-col.m-4.m-push-1
       %span .l-col.m-to-right-1.m-from-left-1
+
 %article
   %header
     %h2 No column gutters
@@ -31,6 +34,7 @@
       %span .l-col.m-3
     .l-col.m-3
       %span .l-col.m-3
+
 %article
   %header
     %h2 No row
