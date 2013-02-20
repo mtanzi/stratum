@@ -5,8 +5,14 @@ $grid-type: pixel;
 @import "layout/scaffolding";
 @import "mock-block";
 
-@include GRID-GUIDES;
+// @include GRID-GUIDES;
 
+#page {
+  .l-row,
+  .l-col {
+    @include transition(260ms);
+  }
+}
 
 .l-container .l-col {
   @include block($height: 120px, $padding: $grid-gutter/2);

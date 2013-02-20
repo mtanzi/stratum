@@ -28,12 +28,7 @@ h1, h2 {
   }
 
   > article {
-    border-top: 1px solid rgba(black, .2);
-    padding: $grid-baseline 0;
-
-    &:first-child {
-      border: none;
-    }
+    padding: ($grid-baseline * 2) 0 $grid-baseline;
   }
 }
 
@@ -121,10 +116,11 @@ article {
   > li {
     overflow: hidden;
     border-radius: 2px;
-  }
-
-  li.p-group {
     margin-left: 3px;
+
+    &:first-child {
+      margin: 0;
+    }
   }
 
   li:not(.p-group) {

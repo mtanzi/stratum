@@ -7,6 +7,13 @@ angular.module('controllers', [])
           selector: ".l-row",
           modifier: "m-gutterless"
         }]
+      },
+      guides: {
+        label: "Guides",
+        instructions: [{
+          selector: ".l-row",
+          modifier: "m-show-guides"
+        }]
       }
     };
   })
@@ -17,6 +24,13 @@ angular.module('controllers', [])
         instructions: [{
           selector: ".l-row",
           modifier: "m-gutterless"
+        }]
+      },
+      guides: {
+        label: "Guides",
+        instructions: [{
+          selector: ".l-row",
+          modifier: "m-show-guides"
         }]
       },
       offsets: {

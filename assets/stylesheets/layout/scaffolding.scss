@@ -79,6 +79,7 @@ $grid-scaffolding-debug:  true  !default;
   }
 }
 
+
 // - Optional
 // Grid type overrides
 .l-container {
@@ -93,19 +94,6 @@ $grid-scaffolding-debug:  true  !default;
     &.m-pixel,
     &.m-fluid {
       @include feature-warning("`$grid-overrides` is not enabled");
-    }
-  }
-}
-
-
-// - Optional
-// Grid guides
-@if $grid-guides-class {
-  &.m-show-guides {
-    @include show-grid-guides;
-    // Bring guides to front
-    &.m-front {
-      @include show-grid-guides(front);
     }
   }
 }
@@ -134,5 +122,15 @@ $grid-scaffolding-debug:  true  !default;
 @if $grid-scaffolding-debug and not $grid-nested-grids {
   .l-col > .l-container {
     @include feature-warning("`$grid-nested-grids` is not enabled");
+  }
+}
+
+
+// Grid guides
+.m-show-guides {
+  @include show-grid-guides;
+  // Bring guides to front
+  &.m-front {
+    @include show-grid-guides(front);
   }
 }
